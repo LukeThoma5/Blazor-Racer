@@ -1,0 +1,23 @@
+﻿@using racer.Shared
+    <div class="table-card">
+        <div class="card" tabindex="0">
+          <dl class="inline">
+            <dt>Position</dt>
+            <dd>@Participant.Position</dd>
+
+            <dt>Country</dt>
+            <dd>@Participant.Country</dd>
+
+            <dt>Name</dt>
+            <dd>@Participant.Name</dd>
+
+            <dt>Time</dt>
+            <dd>@Participant.Time</dd>
+          </dl>
+        </div>
+      </div>
+
+@functions {
+    [Parameter]
+    ParticipantView Participant { get; set; }
+}

@@ -1,0 +1,14 @@
+﻿@using racer.Shared
+<div class="sizable-card">
+    <div class="card bg-dark img-card" tabindex="0"  role="button">
+        <div class="hide-overspill"><img class="card-img" src="@Race.Image" alt="@Race.Description"></div>
+        <div class="card-img-overlay">
+            <h5 class="card-title">@Race.Title</h5>
+        </div>
+    </div>    
+</div>
+
+@functions {
+    [Parameter]
+    RaceCardView Race { get; set; }
+}

@@ -1,0 +1,105 @@
+﻿@using racer.Shared
+@page "/calendar"
+<link href="css/calendar.css" rel="stylesheet" />
+
+<div class="page-content">
+
+    <div class="calendar">
+        <header>
+            @foreach (var days_of_week in @DOW)
+            {
+                <h5>@days_of_week</h5>
+            }
+        </header>
+        <div class="day-container">
+            
+
+            @{int i = 0;}
+            @foreach (var day in @Days)
+            {
+                 <div class="day @(@day.Invalid ? "invalid" : "")">
+                    <h5>
+                        <span class="date">@day.Day</span>
+                        <small>@DOW[i]</small>
+                    </h5>
+                    <hr />
+
+                    @if(@day.Events.Any()) {
+                        @foreach (var ev in @day.Events)
+                        {
+                            <a href="./details" class="event" title="@ev.Name">@ev.Name</a>
+                        }
+                    } else {
+                        <p>No events</p>
+                    }
+                </div>
+
+                {
+                    i++;
+                    i = i % 7;  
+                }
+            }
+
+   
+        </div>
+    </div>
+
+
+
+</div>
+
+
+@functions {
+    CalendarDay[] Days;
+
+    string[] DOW = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+    protected override async Task OnInitAsync()
+    {
+      Days = new [] {
+       new CalendarDay(29, true),
+    new CalendarDay(30, true),
+    new CalendarDay(31, true),
+    new CalendarDay(1),
+    new CalendarDay(2),
+    new CalendarDay(3),
+    new CalendarDay(4),
+    new CalendarDay(5),
+    new CalendarDay(6),
+    new CalendarDay(7),
+    new CalendarDay(8),
+    new CalendarDay(9),
+    new CalendarDay(10),
+    new CalendarDay(11),
+    new CalendarDay(12),
+    new CalendarDay(13),
+    new CalendarDay(14){ Events = new [] { new CalendarEvent
+    {
+        Name = "2018 Championship",
+        Stage = "Stage 20"
+    }}},
+    new CalendarDay(15),
+    new CalendarDay(16),
+    new CalendarDay(17),
+    new CalendarDay(18),
+    new CalendarDay(19),
+    new CalendarDay(20),
+    new CalendarDay(21),
+    new CalendarDay(22),
+    new CalendarDay(23),
+        new CalendarDay(24){ Events = new [] { new CalendarEvent
+    {
+        Name = "2018 Championship",
+        Stage = "Stage 21"
+    }}},
+    new CalendarDay(25),
+    new CalendarDay(26),
+    new CalendarDay(27),
+    new CalendarDay(28),
+    new CalendarDay(29),
+    new CalendarDay(30),
+    new CalendarDay(1, true),
+    new CalendarDay(2, true)
+      };
+    }
+}

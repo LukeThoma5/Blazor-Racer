@@ -1,0 +1,29 @@
+﻿@using racer.Shared
+@page "/home"
+@page "/"
+@inject HttpClient Http
+<link href="css/home.css" rel="stylesheet" />
+<div class="page-content">
+<div class="header-container">
+    <div class="img-container">
+        <h1>Steephill Cycling Coverage</h1>
+    </div>
+</div>
+    <section class="card-container">
+        @foreach (var race in Races)
+        {
+            <RaceCard Race="@race" />
+        }
+    </section>
+</div>
+
+
+@functions {
+    RaceCardView[] Races;
+
+    protected override async Task OnInitAsync()
+    {
+       Races = Array.Empty<RaceCardView>();
+       Races = await Http.GetJsonAsync<RaceCardView[]>("api/Race/Races");
+    }
+}

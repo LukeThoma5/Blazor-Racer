@@ -1,0 +1,19 @@
+﻿
+
+<li class="@liClass">
+        <a class="nav-link" href="@Link">@Name</a>
+    </li>
+
+
+@functions {
+    [Parameter]
+    string Link { get; set; }
+
+     [Parameter]
+    string Name { get; set; }
+
+
+    string liClass { get {
+        return "nav-item active";
+    }}
+}

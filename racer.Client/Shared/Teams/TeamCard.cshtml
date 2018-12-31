@@ -1,0 +1,21 @@
+﻿@using racer.Shared
+<div class="team-card">
+    <div class="card" tabindex="0">
+        <img class="card-img-top" src="@Team.Image" alt="Team Sky Logo" aria-hidden="true">
+        <div class="card-body">
+        <h5 class="card-title" aria-label="$team[name] information.">@Team.Name</h5>
+        <ul class="list-group list-group-flush">
+            @foreach (var participant in Team.Participants)
+        {
+            <TeamCardParticipant Member="@participant" />
+        }
+
+        </ul>
+            </div>
+        </div>
+    </div>
+
+@functions {
+    [Parameter]
+    TeamCardView Team { get; set; }
+}

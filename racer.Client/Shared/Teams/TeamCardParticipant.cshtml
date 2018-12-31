@@ -1,0 +1,12 @@
+﻿@using racer.Shared
+<li class="list-group-item" aria-label="Team Member @Member.Name. Position @Member.Position. Country is @Member.Country.">
+    <span aria-label="@Member.Position">@Member.Position</span>
+    <span aria-label="Name is @Member.Name">@Member.Name</span>
+    <span aria-label="Country is @Member.Country">@Member.Country</span>
+</li>
+
+
+@functions {
+    [Parameter]
+    TeamParticipantView Member { get; set; }
+}

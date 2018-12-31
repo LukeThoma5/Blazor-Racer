@@ -1,0 +1,12 @@
+﻿@using racer.Shared
+<tr tabindex="0">
+      <td>@Participant.Position</td>
+      <td>@Participant.Country</td>
+      <td>@Participant.Name</td>
+      <td>@Participant.Time</td>
+</tr>
+
+@functions {
+    [Parameter]
+    ParticipantView Participant { get; set; }
+}

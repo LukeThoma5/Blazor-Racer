@@ -1,0 +1,24 @@
+﻿@using racer.Shared
+@page "/teams"
+@inject HttpClient Http
+<link href="css/teams.css" rel="stylesheet" />
+
+<div class="page-content">
+    <section class="card-container center">
+        @foreach (var team in TeamList)
+        {
+            <TeamCard Team="@team" />
+        }
+    </section>
+</div>
+
+
+@functions {
+    TeamCardView[] TeamList;
+
+    protected override async Task OnInitAsync()
+    {
+       TeamList = Array.Empty<TeamCardView>();
+       TeamList = await Http.GetJsonAsync<TeamCardView[]>("api/Team/Teams");
+    }
+}
