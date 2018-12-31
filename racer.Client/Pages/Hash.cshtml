@@ -1,0 +1,56 @@
+﻿@using racer.Shared
+@using System.Security.Cryptography
+@using System.Text;
+@page "/hash"
+
+<div class="page-content">
+
+    <h1>The value is c# is: @InternalValue</h1>
+    <h1>The Hash is: @Hashed</h1>
+    <h1>The bound in c# is: @Bound</h1>
+       <h1>The managed in c# is: @Managed</h1>
+    <span>What is your age? <input type="string"
+     value="@InternalValue"
+     onchange="@UpdateInternal" 
+     
+     /></span>
+
+     <span>Bound example<input type="string"
+     bind="@Bound"
+     
+     /></span>
+
+        <span>Managed example<input type="string"
+     value="@Managed"
+     onkeypress="@OnKey"
+     /></span>
+</div>
+
+
+@functions {
+    string Hashed {get; set;}
+    MD5 MD5Hash {get; set;} = MD5.Create();
+    string InternalValue {get; set;}
+
+    
+    string Bound {get; set;}
+
+    string Managed {get; set;}
+
+    void UpdateInternal(UIChangeEventArgs ev) 
+    {
+        this.InternalValue = (string)ev.Value;
+        UpdateHash(InternalValue);
+    }
+
+    void UpdateHash(string value)
+    {
+        Hashed = Convert.ToBase64String(MD5Hash.ComputeHash(Encoding.UTF8.GetBytes(value)));
+    }
+
+    void OnKey(UIKeyboardEventArgs keypress)
+    {
+        Managed += keypress.Key;
+        UpdateHash(Managed);
+    }
+}
